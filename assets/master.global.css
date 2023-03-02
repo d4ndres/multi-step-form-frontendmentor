@@ -29,3 +29,11 @@ html {
 h3 {
     font-weight: 400;
 }
+h2 {
+    font-size: 2rem;
+    padding-top: 3rem;
+}
+
+p {
+    color: var(--Cool-gray);
+}

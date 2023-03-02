@@ -86,12 +86,36 @@ h3{
 }
 main{
   grid-column: span 3;
-  padding: 40px 100px 0 100px;
+  width: min(800px, 80%);
+  margin: 0 auto;
 }
-/* 
-main, aside{
-  min-height: 100vh;
-} */
 
+
+main :deep(.formkit-wrapper){
+  min-width: 100%;
+}
+main :deep(.formkit-input){
+  font-weight: 500;
+}
+
+main :deep( .formkit-input.mysubmit-input) {
+  background-color: var(--Marine-blue);
+}
+
+main :deep( .formkit-form){
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+main :deep( .formkit-outer){
+  margin: 0;
+}
+main :deep( .formkit-outer:last-child){
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
 
 </style>
