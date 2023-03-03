@@ -4,34 +4,46 @@
   <div class="app">
     <aside class="aside">
       <ol>
-        <li>
-          <div class="olli">1</div>
-          <div>
-            <p>setp 1</p>
-            <h3>your info</h3>
-          </div>
-        </li>
-        <li>
-          <div class="olli">2</div>
-          <div>
-            <p>setp 2</p>
-            <h3>select plan</h3>
-          </div>
-        </li>
-        <li>
-          <div class="olli">3</div>
-          <div>
-            <p>setp 3</p>
-            <h3>add-ons</h3>
-          </div>
-        </li>
-        <li>
-          <div class="olli">4</div>
-          <div>
-            <p>setp 4</p>
-            <h3>summary</h3>
-          </div>
-        </li>
+        <NuxtLink to="/personalInfo">
+
+          <li>
+            <div class="olli">1</div>
+            <div>
+              <p>setp 1</p>
+              <h3>your info</h3>
+            </div>
+          </li>
+        </NuxtLink>
+        <NuxtLink to="/selectPlan">
+
+          <li>
+            <div class="olli">2</div>
+            <div>
+              <p>setp 2</p>
+              <h3>select plan</h3>
+            </div>
+          </li>
+        </NuxtLink>
+        <NuxtLink to="/addOns">
+
+          <li>
+            <div class="olli">3</div>
+            <div>
+              <p>setp 3</p>
+              <h3>add-ons</h3>
+            </div>
+          </li>
+        </NuxtLink>
+        <NuxtLink to="/finishingUp">
+
+          <li>
+            <div class="olli">4</div>
+            <div>
+              <p>setp 4</p>
+              <h3>summary</h3>
+            </div>
+          </li>
+        </NuxtLink>
 
       </ol>
     </aside >

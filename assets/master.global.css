@@ -40,3 +40,27 @@ h2 {
 p {
     color: var(--Cool-gray);
 }
+
+.goBack {
+    position: absolute;
+    padding: 1rem 0;
+    font-weight: 700;
+    left: 0;
+    bottom: 0;
+}
+.goBack p {
+    cursor: pointer;
+    overflow: hidden;
+}
+.goBack p::after{
+    content: "";
+    display: block;
+    width: 100%;
+    transform: translateX(-100%);
+    border-bottom: 2px solid;
+    transition: .4s;
+}
+.goBack p:hover::after{
+    transform: translateX(0);
+
+}

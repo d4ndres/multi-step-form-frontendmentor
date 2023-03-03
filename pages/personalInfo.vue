@@ -1,15 +1,17 @@
 <script setup>
     const {formList, addForm} = useForm()
     const route = useRoute()
+
     function handleSubmit( submitted ) {
         addForm(Object.assign(submitted, {path: route.path}))
         return navigateTo({
             path: '/selectPlan'
         })
     }
-    const defaultValue = formList.value.find( item => item.path == route.path )
     
+    const defaultValue = formList.value.find( item => item.path == route.path )
 </script>
+
 <template>
 <FormKit type="form" submit-label="Next Step" @submit="handleSubmit" :value="defaultValue">
 

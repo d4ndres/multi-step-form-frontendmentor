@@ -1,16 +1,36 @@
 <script setup>
-  let radioPlan = useState('plan', () => 'arcade')
-  let frecuency = useState('frecuency', () => false)
+	const {formList, addForm} = useForm()
 
-  function handleSubmit( submitted ) {
-    console.log(submitted);
-  }
+	function wareForm(){
+		const item = formList.value.find( item => item.path = '/personalInfo')
+		if( !item ){
+			return navigateTo({
+				path: '/personalInfo'
+			})
+		}
+	}
+	wareForm()
 
-  const plans = [
-    {title: 'arcade', icon: 'icon-arcade.svg', priceMo: 9, priceYr: 90},
-    {title: 'advanced', icon: 'icon-advanced.svg', priceMo: 12, priceYr: 120},
-    {title: 'pro', icon: 'icon-pro.svg', priceMo: 15, priceYr: 150},
-  ]
+  	let radioPlan = useState('plan', () => 'arcade')
+  	let frecuency = useState('frecuency', () => false)
+
+  	function handleSubmit( submitted ) {
+    	addForm(Object.assign(submitted, {path: route.path}))
+		return navigateTo({
+            path: '/addOns'
+        })
+  	}
+	function handleBack(){
+		return navigateTo({
+            path: '/personalInfo'
+        })
+	}
+
+  	const plans = [
+    	{title: 'arcade', icon: 'icon-arcade.svg', priceMo: 9, priceYr: 90},
+    	{title: 'advanced', icon: 'icon-advanced.svg', priceMo: 12, priceYr: 120},
+   		{title: 'pro', icon: 'icon-pro.svg', priceMo: 15, priceYr: 150},
+  	]
 </script>
 
 <template>
@@ -36,6 +56,11 @@
 		<toggle/>
 		<p :class="{ 'active': frecuency }" @click="frecuency = true">Yearly</p>
     </div>
+	<div class="goBack" @click="handleBack">
+		<p>
+			Go Back
+		</p>
+	</div>
 	<div class="hidden">
 	  <FormKit v-model="radioPlan" type="radio" name="plan" :options="['arcade', 'advanced', 'pro']"/>
 	  <FormKit type="checkbox" name="frecuencyYearly" :value="frecuency" v-model="frecuency" />

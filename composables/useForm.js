@@ -9,8 +9,6 @@ export default function useForm()
     } else {
       formList.value[index] = payload
     }
-
-    console.log(formList.value);
   }
 
   return {formList, addForm}
