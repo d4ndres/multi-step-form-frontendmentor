@@ -3,9 +3,10 @@ import { generateClasses } from '@formkit/themes'
 export default {
     config: {
       classes: generateClasses({
-        submit: { // only applies to email input type
+        submit: {
           wrapper: 'mysubmit-wrapper',
           input: 'mysubmit-input',
+          outer: 'mysubmit-outer'
         }
       })
     }

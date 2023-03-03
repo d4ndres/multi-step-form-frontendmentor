@@ -112,7 +112,8 @@ main :deep( .formkit-form){
 main :deep( .formkit-outer){
   margin: 0;
 }
-main :deep( .formkit-outer:last-child){
+
+main :deep( .formkit-outer.mysubmit-outer) {
   position: absolute;
   right: 0;
   bottom: 0;
