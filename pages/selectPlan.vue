@@ -30,16 +30,16 @@
       </div>
 
     </div>
-    <div class="hidden">
-      <FormKit v-model="radioPlan" type="radio" name="plan" :options="['arcade', 'advanced', 'pro']"/>
-    </div>
     <div class="frecuency">
-      <p :class="{ 'active': !frecuency }" @click="frecuency = false">Monthly</p>
-      
-      <toggle/>
-      <FormKit type="checkbox" name="frecuencyYearly" :value="frecuency" v-model="frecuency" />
-      <p :class="{ 'active': frecuency }" @click="frecuency = true">Yearly</p>
+		<p :class="{ 'active': !frecuency }" @click="frecuency = false">Monthly</p>
+		
+		<toggle/>
+		<p :class="{ 'active': frecuency }" @click="frecuency = true">Yearly</p>
     </div>
+	<div class="hidden">
+	  <FormKit v-model="radioPlan" type="radio" name="plan" :options="['arcade', 'advanced', 'pro']"/>
+	  <FormKit type="checkbox" name="frecuencyYearly" :value="frecuency" v-model="frecuency" />
+	</div>
     
   
 </FormKit>
@@ -60,6 +60,7 @@
   border-radius: 11px;
   border: solid 1px var(--Light-gray);
   transition: .4s;
+  cursor: pointer;
 }
 .plan.active{
   background-color: var(--Alabaster);
@@ -84,6 +85,7 @@
 .frecuency p{
   width: 58px;
   cursor: pointer;
+  transition: .4s;
 }
 .frecuency p:first-child{
   text-align: right;
@@ -97,9 +99,7 @@
   color: var(--Marine-blue)
 }
 
-
-
-/* .hidden :deep(.formkit-outer){
+.hidden :deep(.formkit-outer){
   display: none;
-} */
+}
 </style>

@@ -1,7 +1,9 @@
-<script setup></script>
+<script setup>
+  let frecuency = useState('frecuency')
+</script>
 
 <template>
-  <div id="toggle" class="btn-toggle__wrapper" >
+  <div id="toggle" class="btn-toggle__wrapper" :class="{'active': frecuency}" @click="frecuency = !frecuency">
     <div class="btn-toggle__circle"></div>
   </div>
 </template>
