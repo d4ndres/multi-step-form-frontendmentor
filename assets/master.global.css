@@ -10,9 +10,9 @@
     --Alabaster: hsl(231, 100%, 99%);
     --White: hsl(0, 0%, 100%);
 
-    --btn-toggle-width: 5rem;
-    --btn-toggle-height: calc( var(--btn-toggle-width) * 0.5 );
-    --btn-toggle-size-circle: calc( var(--btn-toggle-height) * 0.7 )
+    --wrapper-width: 3rem;
+    --wrapper-height: calc( var(--wrapper-width)  / 1.8 );
+    --size-circle: calc(var(--wrapper-height) / 1.4);
 }
 
 

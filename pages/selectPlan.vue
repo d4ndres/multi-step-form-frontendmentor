@@ -1,6 +1,6 @@
 <script setup>
   let radioPlan = useState('plan', () => 'arcade')
-  let frecuency = useState('frecuency', () => 'monthly')
+  let frecuency = useState('frecuency', () => false)
 
   function handleSubmit( submitted ) {
     console.log(submitted);
@@ -24,8 +24,8 @@
         <img :src="plan.icon" :alt="plan.title">
         <div class="plan__descrition">
           <h3>{{ plan.title }}</h3>
-          <p v-show="frecuency == 'monthly'">${{plan.priceMo}}/mo</p>
-          <p v-show="frecuency == 'yearly'">${{plan.priceYr}}/yr</p>
+          <p v-show="!frecuency">${{plan.priceMo}}/mo</p>
+          <p v-show="frecuency">${{plan.priceYr}}/yr</p>
         </div>
       </div>
 
@@ -33,7 +33,14 @@
     <div class="hidden">
       <FormKit v-model="radioPlan" type="radio" name="plan" :options="['arcade', 'advanced', 'pro']"/>
     </div>
-    <BtnToggle/>
+    <div class="frecuency">
+      <p :class="{ 'active': !frecuency }" @click="frecuency = false">Monthly</p>
+      
+      <toggle/>
+      <FormKit type="checkbox" name="frecuencyYearly" :value="frecuency" v-model="frecuency" />
+      <p :class="{ 'active': frecuency }" @click="frecuency = true">Yearly</p>
+    </div>
+    
   
 </FormKit>
 </template>
@@ -65,7 +72,34 @@
   text-transform: capitalize;
   padding-bottom: .2rem;
 }
-.hidden :deep(.formkit-outer){
-  /* display: none; */
+.frecuency{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 50px;
+  width: 100%;
+  background-color: var(--Alabaster);
 }
+.frecuency p{
+  width: 58px;
+  cursor: pointer;
+}
+.frecuency p:first-child{
+  text-align: right;
+}
+.frecuency p:last-child{
+  text-align: left;
+}
+
+.frecuency .active {
+  font-weight: 700;
+  color: var(--Marine-blue)
+}
+
+
+
+/* .hidden :deep(.formkit-outer){
+  display: none;
+} */
 </style>
