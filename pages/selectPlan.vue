@@ -1,5 +1,6 @@
 <script setup>
 	const {formList, addForm} = useForm()
+  const route = useRoute()
 
 	function wareForm(){
 		const item = formList.value.find( item => item.path = '/personalInfo')
