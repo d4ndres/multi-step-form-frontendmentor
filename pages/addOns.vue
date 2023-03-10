@@ -13,12 +13,17 @@
 	}
 	// wareForm()
 	function handleSubmit( submitted ){
-		addForm(Object.assign(submitted, {path: route.path}))
+		const addOnsSelected = addOns.value.filter( item => item.state )
+		addForm({
+			path: route.path,
+			addOns: addOnsSelected
+		})
 		return navigateTo({
             path: '/finishingUp'
         })
 	}
 
+	// Issue memory stable
 	const addOns = ref([
 		{ state: false, title: 'Online service', description: 'Access to multiplayer games', priceMo: 1, priceYr: 10},
 		{ state: false, title: 'Larger storage', description: 'Extra 1 TB of cloud save', priceMo: 2, priceYr: 20},

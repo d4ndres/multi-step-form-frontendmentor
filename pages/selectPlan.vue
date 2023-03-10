@@ -16,8 +16,15 @@
   	let frecuency = useState('frecuency', () => false)
 
   	function handleSubmit( submitted ) {
-    	addForm(Object.assign(submitted, {path: route.path}))
-		return navigateTo({
+      const plan = plans.find( item => item.title == submitted.plan ) 
+      addForm({
+        title: plan.title,
+        frecuencyYearly: frecuency,
+        price: frecuency == true? plan.priceYr : plan.priceMo,
+        path: route.path,
+      })
+
+		  return navigateTo({
             path: '/addOns'
         })
   	}
