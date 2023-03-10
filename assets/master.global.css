@@ -31,8 +31,14 @@ html {
 
 h3 {
     font-weight: 400;
+    color: var(--Marine-blue);
 }
+main h3 {
+    font-weight: 700;
+}
+
 h2 {
+    color: var(--Marine-blue);
     font-size: 2rem;
     padding-top: 3rem;
 }

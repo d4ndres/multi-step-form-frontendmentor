@@ -10,7 +10,7 @@
 			})
 		}
 	}
-	wareForm()
+	// wareForm()
 
   	let radioPlan = useState('plan', () => 'arcade')
   	let frecuency = useState('frecuency', () => false)

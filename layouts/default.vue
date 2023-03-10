@@ -130,5 +130,13 @@ main :deep( .formkit-outer.mysubmit-outer) {
   right: 0;
   bottom: 0;
 }
+.olli {
+  transition: .4s;
+}
+
+.router-link-active .olli{
+  background-color: var(--Light-blue);
+  color: var(--Marine-blue);
+}
 
 </style>
