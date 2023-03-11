@@ -2,7 +2,6 @@
 	const {formList, addForm} = useForm()
   	const route = useRoute()
 	let frecuency = useState('frecuency')
-
   	function wareForm(){
 		const item = formList.value.find( item => item.path = '/selectPlan')
 		if( !item ){
@@ -11,32 +10,45 @@
 			})
 		}
 	}
-	// wareForm()
+	wareForm()
+
 	function handleSubmit( submitted ){
-		const addOnsSelected = addOns.value.filter( item => item.state )
-		addForm({
-			path: route.path,
-			addOns: addOnsSelected
+		const addOnsSelected = submitted.addOns.map( title => {
+			const addOn = addOns.find( item => item.title == title )
+			return {
+				title: title,
+				price: frecuency == true? addOn.priceYr : addOn.priceMo,
+			}
 		})
+
+		addForm({
+			addOns: addOnsSelected,
+			path: route.path,
+		})
+
 		return navigateTo({
             path: '/finishingUp'
         })
 	}
 
 	// Issue memory stable
-	const addOns = ref([
-		{ state: false, title: 'Online service', description: 'Access to multiplayer games', priceMo: 1, priceYr: 10},
-		{ state: false, title: 'Larger storage', description: 'Extra 1 TB of cloud save', priceMo: 2, priceYr: 20},
-		{ state: false, title: 'Customizable profile', description: 'Custom theme on your profile', priceMo: 2, priceYr: 20},
-	])
-	let addOnsModel = ref([])
+	const addOns = [
+		{ title: 'Online service', description: 'Access to multiplayer games', priceMo: 1, priceYr: 10},
+		{ title: 'Larger storage', description: 'Extra 1 TB of cloud save', priceMo: 2, priceYr: 20},
+		{ title: 'Customizable profile', description: 'Custom theme on your profile', priceMo: 2, priceYr: 20},
+	]
+	let addOnsModel = useState('addOnsModel',() => [])
+	const isIncludeAddOn = (title) => addOnsModel.value.find( item => item == title )
+	
+
 	function toggleAddOnsModel( addOn ){
-		addOn.state = !addOn.state
-		const index = addOnsModel.value.findIndex( item => item == addOn.title )
+
+		const index = addOnsModel.value.findIndex( item => item == addOn.title ) 
 		if ( index == -1 ){
 			addOnsModel.value.push( addOn.title )
 		} else {
-			addOnsModel.value.pop(index)
+			
+			addOnsModel.value.splice(index, 1)
 		}
 
 	}
@@ -54,14 +66,14 @@
 	<div class="add-ons">
 		<div 
 		class="add-on"
-		:class="{'active': addOn.state}" 
+		:class="{'active': isIncludeAddOn( addOn.title )}" 
 		v-for="addOn in addOns" :key="addOn.title" 
 		@click="toggleAddOnsModel( addOn )"
 		>
 			<div class="add-on__description">
 				<div class="add-on__check">
-					<Icon v-show="!addOn.state" size="28" name="material-symbols:check-box-outline-blank" />	
-					<Icon v-show="addOn.state" size="28" name="material-symbols:check-box-rounded" />	
+					<Icon v-show="!isIncludeAddOn( addOn.title )" size="28" name="material-symbols:check-box-outline-blank" />	
+					<Icon v-show="isIncludeAddOn( addOn.title )" size="28" name="material-symbols:check-box-rounded" />	
 				</div>
 				<div class="add-on__about">
 					<h3>{{ addOn.title }}</h3>

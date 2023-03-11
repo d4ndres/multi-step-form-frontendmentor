@@ -46,7 +46,7 @@
 			<div class="add-on" v-for="addOn in addOns.addOns" :key="addOn.title">
 				<p>{{ addOn.title }}</p>
 				<div class="price">
-					<p>{{ priceUS( 100, frecuency) }}</p>
+					<p>{{ priceUS( addOn.price, frecuency) }}</p>
 				</div>
 			</div>
 		</div>
