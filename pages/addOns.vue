@@ -1,10 +1,25 @@
 <script setup>
-	const {formList, addForm} = useForm()
+	const formList = useState('formList')
+    function addForm( obj ){
+        const index = formList.value.findIndex( item => item.path == obj.path )
+        if( index == -1 ){
+            formList.value.push( obj )
+        } else {
+            formList[index] = obj
+        }
+    }
   	const route = useRoute()
+	const errorForm = useState('errorForm')
 	let frecuency = useState('frecuency')
+
   	function wareForm(){
+		
 		const item = formList.value.find( item => item.path = '/selectPlan')
 		if( !item ){
+			errorForm.value = true
+			setTimeout( () => {
+				errorForm.value = false
+			}, 500 )
 			return navigateTo({
 				path: '/selectPlan'
 			})
@@ -20,15 +35,16 @@
 				price: frecuency == true? addOn.priceYr : addOn.priceMo,
 			}
 		})
-
+				
+		
 		addForm({
 			addOns: addOnsSelected,
 			path: route.path,
 		})
-
-		return navigateTo({
-            path: '/finishingUp'
-        })
+		
+		// return navigateTo({
+        //     path: '/finishingUp'
+        // })
 	}
 
 	// Issue memory stable
@@ -42,7 +58,7 @@
 	
 
 	function toggleAddOnsModel( addOn ){
-
+		
 		const index = addOnsModel.value.findIndex( item => item == addOn.title ) 
 		if ( index == -1 ){
 			addOnsModel.value.push( addOn.title )
@@ -51,6 +67,12 @@
 			addOnsModel.value.splice(index, 1)
 		}
 
+	}
+
+	function handleBack(){
+		return navigateTo({
+            path: '/selectPlan'
+        })
 	}
 
 	

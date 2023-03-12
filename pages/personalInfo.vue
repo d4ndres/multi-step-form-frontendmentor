@@ -1,9 +1,19 @@
 <script setup>
-    const {formList, addForm} = useForm()
+    const formList = useState('formList')
+    function addForm( obj ){
+        const index = formList.value.findIndex( item => item.path == obj.path )
+        if( index == -1 ){
+            formList.value.push( obj )
+        } else {
+            formList[index] = obj
+        }
+    }
+
     const route = useRoute()
 
     function handleSubmit( submitted ) {
         addForm(Object.assign(submitted, {path: route.path}))
+        
         return navigateTo({
             path: '/selectPlan'
         })

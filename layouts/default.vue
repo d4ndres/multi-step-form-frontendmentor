@@ -1,7 +1,11 @@
-<script lang="ts" setup></script>
+<script setup>
+const errorForm = useState('errorForm', () => false)
+const formList = useState('formList', () => [])
+
+</script>
 
 <template>
-  <div class="app">
+  <div class="app" :class="{ 'active': errorForm}">
     <aside class="aside">
       <ol>
         <NuxtLink to="/personalInfo">
@@ -54,7 +58,9 @@
 </template>
 
 <style scoped>
-
+.app.active{
+  background-color: red;
+}
 .app {
   height: 100vh;
   padding: 1rem;

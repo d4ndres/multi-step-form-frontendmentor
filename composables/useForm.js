@@ -1,15 +1,15 @@
 export default function useForm()
 {
-  const formList = useState('formList', () => [])
+  return 'hi'  
 
-  function addForm( payload ){
-    const index = formList.value.findIndex( item => item.path == payload.path )
-    if( index == -1 ){
-      formList.value = [...formList.value, payload]
-    } else {
-      formList.value[index] = payload
-    }
-  }
+  // function addForm( payload ){
+  //   const index = formList.value.findIndex( item => item.path == payload.path )
+  //   if( index == -1 ){
+  //     formList.value.push( payload )
+  //   } else {
+  //     formList.value[index] = payload
+  //   }
+  // }
 
-  return {formList, addForm}
+  // return {formList, addForm}
 }

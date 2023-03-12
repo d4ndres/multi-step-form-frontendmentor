@@ -1,16 +1,30 @@
 <script setup>
-	const {formList, addForm} = useForm()
+    const formList = useState('formList')
+    function addForm( obj ){
+        const index = formList.value.findIndex( item => item.path == obj.path )
+        if( index == -1 ){
+            formList.value.push( obj )
+        } else {
+            formList[index] = obj
+        }
+    }
+    
   const route = useRoute()
+  const errorForm = useState('errorForm')
 
 	function wareForm(){
 		const item = formList.value.find( item => item.path = '/personalInfo')
 		if( !item ){
+      errorForm.value = true
+      setTimeout( () => {
+        errorForm.value = false
+      }, 500 )
 			return navigateTo({
 				path: '/personalInfo'
 			})
 		}
 	}
-	// wareForm()
+	wareForm()
 
   	let radioPlan = useState('plan', () => 'arcade')
   	let frecuency = useState('frecuency', () => false)
@@ -23,7 +37,7 @@
         price: frecuency == true? plan.priceYr : plan.priceMo,
         path: route.path,
       })
-
+      
 		  return navigateTo({
             path: '/addOns'
         })
